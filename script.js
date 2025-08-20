@@ -1,21 +1,30 @@
 function append(value) {
-  let display = document.getElementById("display");
+  const display = document.getElementById("display");
+  const lastChar = display.value.slice(-1);
+
+  // 演算記号が重複していたら追加しない
+  const operators = ['+', '-', '*', '/', '×', '÷'];
+  if (operators.includes(value)) {
+    if (operators.includes(lastChar)) {
+      return;
+    }
+  }
   display.value += value;
 }
 
 function clearDisplay() {
-  document.getElementById("display").value = "";
-  decimalUsed = false; // 小数点の利用フラグをリセット
+  const display = document.getElementById("display");
+  display.value = "";
+  decimalUsed = false; // 小数点の利用フラグをリセット 
 }
 
 function deleteLast() {
-  let display = document.getElementById("display");
-  let val = display.value;
-  // 最後が小数点ならフラグ戻す
-  if (val.slice(-1) === ".") {
+  const display = document.getElementById("display");
+  // 最後が小数点ならフラグをリセット 
+  if (display.value.slice(-1) === ".") {
     decimalUsed = false;
   }
-  display.value = val.slice(0, -1);
+  display.value = display.value.slice(0, -1);
 }
 
 function appendDecimal() {
@@ -26,9 +35,9 @@ function appendDecimal() {
 }
 
 function calculate() {
-  let display = document.getElementById("display");
+  const display = document.getElementById("display");
   let expression = display.value;
-  // 表示用の ÷ と × を JS用の / と * に変換
+  // 表示の×と÷を*と/に変換 
   expression = expression.replace(/÷/g, "/").replace(/×/g, "*");
   try {
     display.value = eval(expression);
@@ -38,5 +47,5 @@ function calculate() {
   decimalUsed = false;
 }
 
-// 小数点を1回に制限するフラグ
+// 小数点を1回に制限するフラグを作成 
 let decimalUsed = false;
