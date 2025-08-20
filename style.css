@@ -17,7 +17,7 @@ body {
 }
 
 input {
-  width: 100%;
+  width: 94%;
   padding: 18px;
   font-size: 1.5em;
   margin-bottom: 15px;
@@ -35,3 +35,4 @@ button {
 .row {
   text-align: center;
 }
+
